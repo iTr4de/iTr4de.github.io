@@ -27,7 +27,8 @@
 ## Project Modules & Purpose
 ```text
 |File/Folder| Description|
-|app.py                       |	Main Flask application, renders templates|
+|:----------------------------| :---------------------------------------------------------|
+| app.py | Main Flask application, renders templates |
 |auth_backend.py              |	Manages user authentication (JWT-based login/register)|
 |subscription_backend.py      |	Handles subscriptions & Stripe payment integration|
 |static/css/styles.css        |	Global styles & page layout|
@@ -37,7 +38,7 @@
 |templates/register.html|	Registration page|
 |templates/dashboard.html|	User dashboard, subscription status|
 |templates/contact.html|	Contact form UI|
-|templates/subscription.html|	Subscription plans & payment options|      |
+|templates/subscription.html|	Subscription plans & payment options|
 |requirements.txt|	Lists Python dependencies for easy installation|
 |README.md|	Project documentation & setup guide|
 ```

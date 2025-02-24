@@ -25,7 +25,7 @@
 ```
 
 ## Project Modules & Purpose
-'''table
+```table
 |File/Folder| Description|
 |app.py|	Main Flask application, renders templates|
 |auth_backend.py|	Manages user authentication (JWT-based login/register)|
@@ -40,7 +40,7 @@ templates/contact.html	Contact form UI
 templates/subscription.html	Subscription plans & payment options
 requirements.txt	Lists Python dependencies for easy installation
 README.md	Project documentation & setup guide
-'''
+```
 
 
 ## Setup Instructions

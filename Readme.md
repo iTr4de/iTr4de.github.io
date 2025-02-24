@@ -32,10 +32,10 @@
 |auth_backend.py               |	Manages user authentication (JWT-based login/register) |
 |subscription_backend.py       |	Handles subscriptions & Stripe payment integration |
 |static/css/styles.css         |	Global styles & page layout |
-|static/js/app.js              |	Handles form submissions, AJAX calls, and authentication |
-|templates/index.html          |	Homepage UI |
-|templates/login.html          |	Login page |
-|templates/register.html       |	Registration page |
+|static/js/app.js              | Handles form submissions, AJAX calls, and authentication |
+|templates/index.html          | Homepage UI |
+|templates/login.html          | Login page |
+|templates/register.html       | Registration page |
 |templates/dashboard.html      | User dashboard, subscription status |
 |templates/contact.html        | Contact form UI |
 |templates/subscription.html   | Subscription plans & payment options |

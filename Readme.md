@@ -25,7 +25,7 @@
 ```
 
 ## Project Modules & Purpose
-```table
+```text
 |File/Folder| Description|
 |app.py|	Main Flask application, renders templates|
 |auth_backend.py|	Manages user authentication (JWT-based login/register)|

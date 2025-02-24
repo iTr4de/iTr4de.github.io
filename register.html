@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - NeuroVest AI</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Register for NeuroVest AI</h2>
+        <form id="register-form">
+            <input type="text" class="input-field" id="name" placeholder="Full Name" required>
+            <input type="email" class="input-field" id="email" placeholder="Email Address" required>
+            <input type="password" class="input-field" id="password" placeholder="Password" required>
+            <input type="password" class="input-field" id="confirm-password" placeholder="Confirm Password" required>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html" style="color:#0073e6;">Login here</a></p>
+        <p id="response-message"></p>
+    </div>
+    <script defer src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans - NeuroVest AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            background: #000;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        nav {
+            background: #111;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-size: 1.2em;
+        }
+        .section {
+            padding: 40px;
+            margin: 20px;
+            border-radius: 10px;
+            background: #111;
+        }
+        .pricing-table {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .pricing-plan {
+            background: #222;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+        }
+        .btn {
+            background: #0073e6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        NeuroVest AI
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="subscription.html">Subscription</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </nav>
+    
+    <div class="container">
+        <div class="section">
+            <h2>Choose Your Subscription Plan</h2>
+            <div class="pricing-table">
+                <div class="pricing-plan">
+                    <h3>Free Plan</h3>
+                    <p>Basic access to AI insights</p>
+                    <p><strong>$0/month</strong></p>
+                    <button class="btn">Subscribe</button>
+                </div>
+                <div class="pricing-plan">
+                    <h3>Individual Plan</h3>
+                    <p>Full AI advisory & analytics</p>
+                    <p><strong>$9/month</strong></p>
+                    <button class="btn" onclick="payWithPayPal()">Pay with PayPal</button>
+                    <button class="btn" onclick="payWithCard()">Pay with Visa/Mastercard</button>
+                </div>
+                <div class="pricing-plan">
+                    <h3>Corporate Plan</h3>
+                    <p>Team-wide AI investment tools (min. 100 users)</p>
+                    <p><strong>$7/month per user</strong></p>
+                    <button class="btn" onclick="payWithPayPal()">Pay with PayPal</button>
+                    <button class="btn" onclick="payWithCard()">Pay with Visa/Mastercard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        &copy; 2024 NeuroVest AI. All Rights Reserved.
+    </footer>
+
+    <script>
+        function payWithPayPal() {
+            window.location.href = "https://www.paypal.com/checkoutnow";
+        }
+        
+        function payWithCard() {
+            window.location.href = "https://www.visa.com/payment";
+        }
+    </script>
+</body>
+</html>

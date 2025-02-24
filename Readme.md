@@ -1,73 +1,66 @@
-# NeuroVest AI Project
+# NeuroVest AI - Static Version (GitHub Pages Compatible)
 
 ## Project Structure
 ```
 📂 NeuroVest-AI
-├── 📂 static/                # Static assets (CSS, JS)
+├── 📂 static/               # Static assets (CSS, JS)
 │   ├── 📂 css/
-│   │   ├── styles.css        # Global styles
+│   │   ├── styles.css       # Global styles
 │   ├── 📂 js/
-│   │   ├── app.js            # Frontend logic (AJAX, form handling)
+│   │   ├── app.js           # Simulated API calls for authentication
 │
-├── 📂 templates/             # HTML templates
-│   ├── index.html            # Homepage
-│   ├── login.html            # User login page
-│   ├── register.html         # User registration page
-│   ├── dashboard.html        # User dashboard
-│   ├── contact.html          # Contact form
-│   ├── subscription.html     # Subscription page
+├── 📂 templates/            # HTML templates (served as static files on GitHub Pages)
+│   ├── index.html           # Homepage
+│   ├── login.html           # User login page
+│   ├── register.html        # User registration page
+│   ├── dashboard.html       # User dashboard (localStorage-based auth simulation)
+│   ├── contact.html         # Contact form
+│   ├── subscription.html    # Subscription plans
 │
-├── app.py                    # Main Flask application
-├── auth_backend.py            # Authentication logic (JWT-based login & registration)
-├── subscription_backend.py    # Subscription & payment processing logic (Stripe integration)
-├── requirements.txt           # Python dependencies
-├── README.md                  # Project documentation
+├── README.md                # Documentation
 ```
 
-## Project Modules & Purpose
-``` table
-| File/Folder | Description |
-| :--------------------------- | :------------------------------------------------------- |
-| app.py                       | Main Flask application, renders templates |
-|auth_backend.py               |	Manages user authentication (JWT-based login/register) |
-|subscription_backend.py       |	Handles subscriptions & Stripe payment integration |
-|static/css/styles.css         |	Global styles & page layout |
-|static/js/app.js              | Handles form submissions, AJAX calls, and authentication |
-|templates/index.html          | Homepage UI |
-|templates/login.html          | Login page |
-|templates/register.html       | Registration page |
-|templates/dashboard.html      | User dashboard, subscription status |
-|templates/contact.html        | Contact form UI |
-|templates/subscription.html   | Subscription plans & payment options |
-|requirements.txt              | Lists Python dependencies for easy installation |
-|README.md                     | Project documentation & setup guide |
-```
-
-
-## Setup Instructions
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourrepo/neurovest-ai.git
-   cd neurovest-ai
+## Deployment on GitHub Pages
+1. **Move the `templates/` folder content into `docs/`** (GitHub Pages requires a `docs/` folder)
    ```
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
+   mv templates docs
    ```
-3. **Run the Flask application**
-   ```bash
-   python app.py
+2. **Ensure File Structure for GitHub Pages**
    ```
-
-## API Endpoints
-- `POST /api/register` - Register a new user
-- `POST /api/login` - Authenticate and return a JWT token
-- `GET /api/user` - Get user details (requires authentication)
+   📂 NeuroVest-AI
+   ├── 📂 docs/               # Static files for GitHub Pages
+   │   ├── index.html         # Homepage
+   │   ├── login.html         # Login Page
+   │   ├── register.html      # Register Page
+   │   ├── dashboard.html     # Dashboard
+   │   ├── contact.html       # Contact Page
+   │   ├── subscription.html  # Subscription Page
+   │   ├── 📂 static/
+   │   │   ├── css/styles.css
+   │   │   ├── js/app.js
+   ├── README.md
+   ```
+3. **Push Changes to GitHub**
+   ```bash
+   git add .
+   git commit -m "Prepare static site for GitHub Pages"
+   git push origin main
+   ```
+4. **Enable GitHub Pages**
+   - Go to **Repository Settings → Pages**
+   - Set the **Source** to `docs/` folder
+   - **GitHub will host your static website at** `yourusername.github.io/yourrepo/`
 
 ## Features
-✅ AI-driven investment insights  
-✅ Secure authentication with JWT  
-✅ User dashboard for portfolio management  
+✅ **Simulated API Authentication (LocalStorage-based Login/Register)**  
+✅ **Fully Static Website (No Flask, No Backend Required)**  
+✅ **Subscription Plans UI (No Payment Gateway Yet)**  
+✅ **User Dashboard (Simulated User Data via LocalStorage)**  
 
-## License
-MIT License
+## Next Steps
+- 🔹 **Integrate Firebase Authentication** for real auth
+- 🔹 **Add Stripe/PayPal API for subscription payments**
+- 🔹 **Deploy Flask Backend on Heroku/Render for API interactions**
+
+---
+🚀 **Live Demo:** [yourusername.github.io/yourrepo/](https://yourusername.github.io/yourrepo/)

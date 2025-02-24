@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - NeuroVest AI</title>
     <link rel="stylesheet" href="/static/css/styles.css">
-    <script src="/static/js/app.js" defer></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script defer src="/static/js/dashboard.js"></script>
 </head>
 <body>
     <header>
         <h1>Dashboard</h1>
         <nav>
             <a href="/">Home</a>
-            <a href="/dashboard">Dashboard</a>
             <a href="#" id="logout">Logout</a>
         </nav>
     </header>
@@ -28,29 +30,5 @@
     <footer>
         <p>&copy; 2024 NeuroVest AI. All Rights Reserved.</p>
     </footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", async function () {
-            try {
-                const response = await fetch("/api/user", {
-                    method: "GET",
-                    headers: { "x-access-token": localStorage.getItem("token") },
-                });
-                const result = await response.json();
-                if (result.success) {
-                    document.getElementById("user-info").innerHTML = `<p>Welcome, ${result.user.name}</p>`;
-                } else {
-                    window.location.href = "/login";
-                }
-            } catch (error) {
-                window.location.href = "/login";
-            }
-        });
-
-        document.getElementById("logout").addEventListener("click", function () {
-            localStorage.removeItem("token");
-            window.location.href = "/login";
-        });
-    </script>
 </body>
 </html>

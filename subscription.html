@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription - NeuroVest AI</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Subscription Management</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="container">
+            <h2>Manage Your Subscription</h2>
+            <div id="subscription-info">
+                <!-- Subscription details will be loaded here -->
+            </div>
+            <button class="btn" id="logout">Logout</button>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 NeuroVest AI. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+    // Simulated subscription management using localStorage
+    let currentUser = JSON.parse(localStorage.getItem("currentUser")) || {
+        email: "johndoe@example.com",
+        name: "John Doe",
+        plan: "free",
+        status: "Active",
+        nextBillingDate: "Next Month"
+    };
+
+    function checkUser() {
+        if (!currentUser || !currentUser.email) {
+            window.location.href = "login.html";
+        } else {
+            loadSubscription();
+        }
+    }
+
+    function loadSubscription() {
+        document.getElementById("subscription-info").innerHTML = `
+            <p><strong>Name:</strong> ${currentUser.name}</p>
+            <p><strong>Email:</strong> ${currentUser.email}</p>
+            <p><strong>Plan:</strong> ${currentUser.plan}</p>
+            <p><strong>Status:</strong> ${currentUser.status}</p>
+            <p><strong>Next Billing Date:</strong> ${currentUser.nextBillingDate}</p>
+            <button class="btn" onclick="changeSubscription('individual')">Upgrade to Individual</button>
+            <button class="btn" onclick="changeSubscription('corporate')">Upgrade to Corporate</button>
+            <button class="btn" onclick="changeSubscription('free')">Downgrade to Free</button>
+        `;
+    }
+
+    function changeSubscription(newPlan) {
+        currentUser.plan = newPlan;
+        currentUser.status = "Active";
+        currentUser.nextBillingDate = "Next Month";
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        loadSubscription();
+        alert(`Subscription updated to ${newPlan} plan.`);
+    }
+
+    function logout() {
+        localStorage.removeItem("currentUser");
+        window.location.href = "login.html";
+    }
+
+    document.getElementById("logout").addEventListener("click", logout);
+    document.addEventListener("DOMContentLoaded", checkUser);
+    </script>
+</body>
+</html>

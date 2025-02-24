@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - NeuroVest AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: #111;
+            border-radius: 10px;
+            margin-top: 100px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn {
+            background: #0073e6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register for NeuroVest AI</h2>
+        <form id="register-form">
+            <input type="text" class="input-field" id="name" placeholder="Full Name" required>
+            <input type="email" class="input-field" id="email" placeholder="Email Address" required>
+            <input type="password" class="input-field" id="password" placeholder="Password" required>
+            <input type="password" class="input-field" id="confirm-password" placeholder="Confirm Password" required>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html" style="color:#0073e6;">Login here</a></p>
+        <p id="response-message"></p>
+    </div>
+    
+    <script>
+        document.getElementById('register-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                document.getElementById('response-message').innerText = "Passwords do not match.";
+                return;
+            }
+
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password })
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                window.location.href = "dashboard.html";
+            } else {
+                document.getElementById('response-message').innerText = "Registration failed: " + result.message;
+            }
+        });
+    </script>
+</body>
+</html>

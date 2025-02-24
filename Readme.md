@@ -25,7 +25,7 @@
 ```
 
 ## Project Modules & Purpose
-```
+```table
 |File/Folder| Description|
 |:----------------------------| :---------------------------------------------------------|
 | app.py | Main Flask application, renders templates |

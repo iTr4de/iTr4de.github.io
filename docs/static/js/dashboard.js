@@ -1,61 +1,51 @@
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "YOUR_FIREBASE_API_KEY",
-    authDomain: "YOUR_FIREBASE_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_FIREBASE_PROJECT_ID",
-    storageBucket: "YOUR_FIREBASE_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+// Simulated user authentication & subscription data stored in localStorage
+let currentUser = JSON.parse(localStorage.getItem("currentUser")) || {
+    email: "johndoe@example.com",
+    name: "John Doe",
+    plan: "free",
+    status: "Active",
+    nextBillingDate: "Next Month"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-// Check if user is logged in
-auth.onAuthStateChanged((user) => {
-    if (user) {
-        document.getElementById("user-info").innerHTML = `<p>Welcome, ${user.displayName || user.email}</p>`;
-        
-        // Fetch user subscription details
-        db.collection("subscriptions").doc(user.uid).get().then((doc) => {
-            if (doc.exists) {
-                const data = doc.data();
-                document.getElementById("subscription-info").innerHTML = `
-                    <p><strong>Plan:</strong> ${data.plan}</p>
-                    <p><strong>Status:</strong> ${data.status}</p>
-                    <p><strong>Next Billing Date:</strong> ${data.nextBillingDate}</p>
-                    <button class="btn" onclick="changeSubscription('individual')">Upgrade to Individual</button>
-                    <button class="btn" onclick="changeSubscription('corporate')">Upgrade to Corporate</button>
-                    <button class="btn" onclick="changeSubscription('free')">Downgrade to Free</button>
-                `;
-            } else {
-                document.getElementById("subscription-info").innerHTML = `<p>No active subscription found.</p>`;
-            }
-        }).catch((error) => {
-            console.error("Error fetching subscription details:", error);
-        });
+// Simulated login check
+function checkUser() {
+    if (!currentUser || !currentUser.email) {
+        window.location.href = "/login.html";
     } else {
-        window.location.href = "/login.html"; // Redirect to login if not logged in
+        document.getElementById("user-info").innerHTML = `<p>Welcome, ${currentUser.name}</p>`;
+        loadSubscription();
     }
-});
+}
+
+// Load subscription details
+function loadSubscription() {
+    document.getElementById("subscription-info").innerHTML = `
+        <p><strong>Plan:</strong> ${currentUser.plan}</p>
+        <p><strong>Status:</strong> ${currentUser.status}</p>
+        <p><strong>Next Billing Date:</strong> ${currentUser.nextBillingDate}</p>
+        <button class="btn" onclick="changeSubscription('individual')">Upgrade to Individual</button>
+        <button class="btn" onclick="changeSubscription('corporate')">Upgrade to Corporate</button>
+        <button class="btn" onclick="changeSubscription('free')">Downgrade to Free</button>
+    `;
+}
 
 // Change subscription plan function
 function changeSubscription(newPlan) {
-    auth.onAuthStateChanged((user) => {
-        if (user) {
-            db.collection("subscriptions").doc(user.uid).set({
-                plan: newPlan,
-                status: "Active",
-                nextBillingDate: "Next Month"
-            }, { merge: true })
-            .then(() => {
-                document.getElementById("subscription-info").innerHTML += `<p>Subscription updated to ${newPlan} plan.</p>`;
-            })
-            .catch((error) => {
-                console.error("Error updating subscription:", error);
-            });
-        }
-    });
+    currentUser.plan = newPlan;
+    currentUser.status = "Active";
+    currentUser.nextBillingDate = "Next Month";
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    loadSubscription();
+    alert(`Subscription updated to ${newPlan} plan.`);
 }
+
+// Logout function
+function logout() {
+    localStorage.removeItem("currentUser");
+    window.location.href = "/login.html";
+}
+
+document.getElementById("logout").addEventListener("click", logout);
+
+// Initialize
+document.addEventListener("DOMContentLoaded", checkUser);
